@@ -15,7 +15,7 @@
 /* --- Thiết lập cơ bản --- */
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Quicksand',-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* --- Container chính (Tương đương .login-container và .min-h-screen) --- */
@@ -247,4 +247,5 @@ body {
 .google-logo {
     height: 1.5rem; /* h-6 */
     width: 1.5rem; /* w-6 */
+
 }
