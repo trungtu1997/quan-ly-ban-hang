@@ -54,15 +54,15 @@ async function googleSignIn() {
         // Kiểm tra allowed admins
         const configRef = db.collection('config').doc('allowedAdmins');
         const doc = await configRef.get();
-        const allowedEmails = doc.exists && doc.data().emails ? doc.data().emails.map(e => e.toLowerCase()) : [];
+        const allowedEmails = doc.exists && doc.data() && doc.data().emails ? doc.data().emails.map(e => typeof e === 'string' ? e.toLowerCase() : '') : [];
 
         if (!allowedEmails.includes(email)) {
-            await auth.signOut(); // Đăng xuất ngay
-            document.getElementById('message').textContent = 'Bạn không có quyền đăng nhập bằng Google. Chỉ chủ shop được phép!';
-            return;
+            await auth.signOut(); // Đăng xuất ngay lập tức
+            document.getElementById('message').textContent = 'Bạn không có quyền đăng nhập bằng Google!';
+            return; // Dừng hàm, không vào dashboard
         }
 
-        // Cho phép → Tạo shop riêng
+        // Cho phép → Tạo/cập nhật shop riêng
         await db.collection('users').doc(user.uid).set({
             uid: user.uid,
             email: email,
@@ -78,6 +78,7 @@ async function googleSignIn() {
         document.getElementById('message').textContent = 'Lỗi Google login: ' + error.message;
     }
 }
+
 // Hiển thị dashboard khi login thành công
 function showDashboard() {
     document.querySelector('.login-container').style.display = 'none';
@@ -96,6 +97,7 @@ auth.onAuthStateChanged(user => {
     }
 
 });
+
 
 
 
