@@ -51,22 +51,24 @@ async function googleSignIn() {
         const user = result.user;
         const email = user.email.toLowerCase(); // Chuẩn hóa chữ thường
 
-        // Kiểm tra email có trong danh sách allowed admins không
+        // Kiểm tra allowed admins
         const configRef = db.collection('config').doc('allowedAdmins');
         const doc = await configRef.get();
-        if (!doc.exists || !doc.data().emails.includes(email)) {
+        const allowedEmails = doc.exists && doc.data().emails ? doc.data().emails.map(e => e.toLowerCase()) : [];
+
+        if (!allowedEmails.includes(email)) {
             await auth.signOut(); // Đăng xuất ngay
             document.getElementById('message').textContent = 'Bạn không có quyền đăng nhập bằng Google. Chỉ chủ shop được phép!';
             return;
         }
 
-        // Đây là admin hợp lệ → Set role admin và tạo/cập nhật shop
+        // Cho phép → Tạo shop riêng
         await db.collection('users').doc(user.uid).set({
             uid: user.uid,
             email: email,
             displayName: user.displayName || email.split('@')[0],
             role: 'admin',
-            shopId: user.uid, // ShopId = UID của Google admin này
+            shopId: user.uid,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
 
@@ -76,7 +78,6 @@ async function googleSignIn() {
         document.getElementById('message').textContent = 'Lỗi Google login: ' + error.message;
     }
 }
-
 // Hiển thị dashboard khi login thành công
 function showDashboard() {
     document.querySelector('.login-container').style.display = 'none';
@@ -95,5 +96,6 @@ auth.onAuthStateChanged(user => {
     }
 
 });
+
 
 
