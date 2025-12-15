@@ -17,10 +17,6 @@ const auth = firebase.auth();
 function signUp() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-	if (!email || !password) {
-        document.getElementById('message').textContent = 'Vui lòng nhập đầy đủ email và mật khẩu!';
-        return;  // Dừng lại, không gọi Firebase
-    }
     auth.createUserWithEmailAndPassword(email, password)
         .then(user => {
             document.getElementById('message').textContent = 'Đăng ký thành công!';
@@ -34,12 +30,16 @@ function signUp() {
 function signIn() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+	if (!email || !password) {
+        document.getElementById('message').textContent = 'Vui lòng nhập đầy đủ email và mật khẩu!';
+        return;  // Dừng lại, không gọi Firebase
+    }
     auth.signInWithEmailAndPassword(email, password)
         .then(user => {
             showDashboard();
         })
         .catch(err => {
-            document.getElementById('message').textContent = err.message;
+            document.getElementById('message').textContent = 'Email hoặc mật khẩu không đúng!';
         });
 }
 
@@ -69,3 +69,4 @@ auth.onAuthStateChanged(user => {
     }
 
 });
+
