@@ -44,11 +44,37 @@ function signIn() {
 }
 
 // Hàm đăng nhập Google (nếu enable)
-function googleSignIn() {
+async function googleSignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-        .then(user => showDashboard())
-        .catch(err => document.getElementById('message').textContent = err.message);
+    try {
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+        const email = user.email.toLowerCase(); // Chuẩn hóa chữ thường
+
+        // Kiểm tra email có trong danh sách allowed admins không
+        const configRef = db.collection('config').doc('allowedAdmins');
+        const doc = await configRef.get();
+        if (!doc.exists || !doc.data().emails.includes(email)) {
+            await auth.signOut(); // Đăng xuất ngay
+            document.getElementById('message').textContent = 'Bạn không có quyền đăng nhập bằng Google. Chỉ chủ shop được phép!';
+            return;
+        }
+
+        // Đây là admin hợp lệ → Set role admin và tạo/cập nhật shop
+        await db.collection('users').doc(user.uid).set({
+            uid: user.uid,
+            email: email,
+            displayName: user.displayName || email.split('@')[0],
+            role: 'admin',
+            shopId: user.uid, // ShopId = UID của Google admin này
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+
+        currentRole = 'admin';
+        showDashboard();
+    } catch (error) {
+        document.getElementById('message').textContent = 'Lỗi Google login: ' + error.message;
+    }
 }
 
 // Hiển thị dashboard khi login thành công
@@ -69,4 +95,5 @@ auth.onAuthStateChanged(user => {
     }
 
 });
+
 
