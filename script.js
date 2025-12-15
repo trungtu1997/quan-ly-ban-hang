@@ -91,13 +91,7 @@ function signOut() {
     auth.signOut().then(() => location.reload());
 }
 
-// Kiểm tra trạng thái login khi load page
-auth.onAuthStateChanged(user => {
-    if (user) {
-        showDashboard();
-    }
 
-});
 
 
 
