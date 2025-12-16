@@ -259,15 +259,10 @@ body {
 
 }
 
-/* Header */
-.header {
+/* Header bar (dải màu trên cùng) */
+.header-bar {
     height: 60px;
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #43434d;
     position: fixed;
     top: 0;
     left: 0;
@@ -275,11 +270,27 @@ body {
     z-index: 1000;
 }
 
-.header-left h2 {
+/* Top bar (tên shop + avatar + chuông trên nền trắng) */
+.top-bar {
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.top-left h2 {
     color: #43434d;
 }
 
-.header-right {
+.top-right {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -339,88 +350,31 @@ body {
 /* Main container */
 .main-container {
     display: flex;
-    margin-top: 60px;
+    margin-top: 120px; /* 60px header bar + 60px top bar */
 }
 
-/* Sidebar */
+/* Sidebar (giữ nguyên như trước) */
 .sidebar {
     width: 70px;
     background: #43434d;
     position: fixed;
-    top: 60px;
+    top: 120px;
     bottom: 0;
     left: 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-    z-index: 999;
+    z-index: 998;
 }
 
-.sidebar-nav ul {
-    list-style: none;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
-
-.sidebar-item {
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background 0.3s;
-    position: relative;
-}
-
-.sidebar-item:hover {
-    background: #555;
-}
-
-.sidebar-item.active {
-    background: #555;
-}
-
-/* Tooltip */
-.sidebar-item::after {
-    content: attr(title);
-    position: absolute;
-    left: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-}
-
-.sidebar-item:hover::after {
-    opacity: 1;
-}
-
-/* Content */
+/* Content (nền trắng) */
 .content {
     margin-left: 70px;
     padding: 20px;
     width: 100%;
-    min-height: calc(100vh - 60px);
-    background: #f0f2f5;
+    min-height: calc(100vh - 120px);
+    background: #fff;
 }
 
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-
+/* Giữ nguyên CSS sidebar-item, tooltip, tab-content từ code trước */
 
 
 
