@@ -90,28 +90,7 @@ function showDashboard() {
 function signOut() {
     auth.signOut().then(() => location.reload());
 }
-// Load avatar và info user khi login thành công
-function loadUserInfo(user) {
-    // Load avatar từ Google
-    const avatarImg = document.getElementById('user-avatar-img');
-    if (user.photoURL) {
-        avatarImg.src = user.photoURL; // Ảnh Google
-    } else {
-        avatarImg.src = 'asset/default-avatar.png'; // Ảnh default nếu không có (ba thêm file này vào asset nếu muốn)
-    }
 
-    // Load tên và email (nếu ba muốn hiện ở dropdown hoặc chỗ khác)
-    document.getElementById('user-name').textContent = user.displayName || user.email.split('@')[0];
-    document.getElementById('user-email').textContent = user.email;
-}
-
-// Gọi hàm này trong onAuthStateChanged hoặc sau khi login thành công
-auth.onAuthStateChanged(user => {
-    if (user) {
-        loadUserInfo(user); // Load avatar + info
-        showDashboard();
-    }
-});
 
 
 
