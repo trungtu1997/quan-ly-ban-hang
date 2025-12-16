@@ -91,6 +91,39 @@ function signOut() {
     auth.signOut().then(() => location.reload());
 }
 
+// Toggle dropdown avatar
+function toggleUserDropdown() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Click outside dropdown to close
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.user-avatar')) {
+        document.getElementById('user-dropdown').style.display = 'none';
+    }
+});
+
+// Sidebar click load tab
+document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        const tab = item.getAttribute('data-tab');
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(tab).classList.add('active');
+    });
+});
+
+// Load user info khi login (thêm vào onAuthStateChanged nếu có)
+function loadUserInfo(user) {
+    document.getElementById('user-name').textContent = user.displayName || user.email.split('@')[0];
+    document.getElementById('user-email').textContent = user.email;
+    document.getElementById('user-role').textContent = currentRole === 'admin' ? 'Admin' : 'Nhân Viên';
+    document.getElementById('user-avatar-img').src = user.photoURL || 'asset/default-avatar.png'; // Ba thêm avatar default nếu muốn
+}
+
 
 
 
