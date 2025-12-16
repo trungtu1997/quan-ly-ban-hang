@@ -71,7 +71,14 @@
 		<!-- Sidebar với avatar -->
 		<aside class="sidebar">
 		    <div class="sidebar-avatar">
-		        <img id="user-avatar-img" src="https://via.placeholder.com/50" alt="Avatar" class="avatar-img">
+		        <img id="user-avatar-img" src="/asset/default-avatar.png" alt="Avatar" class="avatar-img">
+				<div id="user-dropdown" style="display: none;">
+			    <strong id="user-name">Admin</strong>
+			    <div id="user-email">email@example.com</div>
+			    <div>Role: Admin</div>
+			    <hr>
+			    <div onclick="signOut()">Đăng Xuất</div>
+			</div>
 		    </div>
 		    <nav class="sidebar-nav">
 		        <ul>
@@ -97,6 +104,7 @@
 </body>
 
 </html>
+
 
 
 
