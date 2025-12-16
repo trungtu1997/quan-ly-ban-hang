@@ -70,6 +70,26 @@
     <div id="dashboard" style="display: none; margin: 20px;">
         <h2>Chào mừng! Bạn đã đăng nhập thành công.</h2>
         <button onclick="signOut()">Đăng Xuất</button>
+		<!-- Sidebar với avatar -->
+		<aside class="sidebar">
+		    <div class="sidebar-avatar">
+		        <img id="user-avatar-img" src="https://via.placeholder.com/50" alt="Avatar" class="avatar-img">
+		    </div>
+		    <nav class="sidebar-nav">
+		        <ul>
+		            <li class="sidebar-item active" data-tab="settings-tab" title="Cài Đặt">
+		                <i class="fas fa-cog"></i>
+		            </li>
+		            <li class="sidebar-item" data-tab="employees-tab" title="Quản Lý Nhân Viên">
+		                <i class="fas fa-users"></i>
+		            </li>
+		            <!-- Thêm icon khác sau -->
+		            <li class="sidebar-item sidebar-logout" title="Đăng Xuất" onclick="signOut()">
+		                <i class="fas fa-sign-out-alt"></i>
+		            </li>
+		        </ul>
+		    </nav>
+		</aside>
     </div>
     <!-- Firebase SDK (phiên bản mới nhất 2025) -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
@@ -79,6 +99,7 @@
 </body>
 
 </html>
+
 
 
 
