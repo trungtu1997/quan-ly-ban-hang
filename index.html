@@ -67,63 +67,10 @@
         </div>
     </div>
 
-    <div id="dashboard" style="display: none;">
-	    <!-- Header bar (dải màu trên cùng) -->
-	    <div class="header-bar"></div>
-	
-	    <!-- Phần trên nền trắng -->
-	    <div class="top-bar">
-	        <div class="top-left">
-	            <h2 id="shop-name">Quản Lý Bán Hàng</h2>
-	        </div>
-	        <div class="top-right">
-	            <div class="notification">
-	                <i class="fas fa-bell"></i>
-	                <span class="badge">0</span>
-	            </div>
-	            <div class="user-avatar" onclick="toggleUserDropdown()">
-	                <img id="user-avatar-img" src="https://via.placeholder.com/40" alt="Avatar">
-	                <div id="user-dropdown" class="dropdown" style="display: none;">
-	                    <div class="dropdown-item"><strong id="user-name">Admin</strong></div>
-	                    <div class="dropdown-item" id="user-email">email@example.com</div>
-	                    <div class="dropdown-item">Role: <span id="user-role">Admin</span></div>
-	                    <hr>
-	                    <div class="dropdown-item" onclick="signOut()">Đăng Xuất</div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	
-	    <div class="main-container">
-	        <!-- Sidebar -->
-	        <aside class="sidebar">
-	            <nav class="sidebar-nav">
-	                <ul>
-	                    <li class="sidebar-item active" data-tab="settings-tab" title="Cài Đặt">
-	                        <i class="fas fa-cog"></i>
-	                    </li>
-	                    <li class="sidebar-item" data-tab="employees-tab" title="Quản Lý Nhân Viên">
-	                        <i class="fas fa-users"></i>
-	                    </li>
-	                    <!-- Thêm icon khác sau -->
-	                </ul>
-	            </nav>
-	        </aside>
-	
-	        <!-- Content (nền trắng) -->
-	        <main class="content">
-	            <div id="settings-tab" class="tab-content active">
-	                <h3>Cài Đặt Shop</h3>
-	                <p>Phần cài đặt sẽ thêm sau</p>
-	            </div>
-	            <div id="employees-tab" class="tab-content">
-	                <h3>Quản Lý Nhân Viên</h3>
-	                <p>Phần thêm/danh sách nhân viên sẽ thêm sau</p>
-	            </div>
-	        </main>
-	    </div>
-	</div>
-
+    <div id="dashboard" style="display: none; margin: 20px;">
+        <h2>Chào mừng! Bạn đã đăng nhập thành công.</h2>
+        <button onclick="signOut()">Đăng Xuất</button>
+    </div>
     <!-- Firebase SDK (phiên bản mới nhất 2025) -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
@@ -132,6 +79,7 @@
 </body>
 
 </html>
+
 
 
 
