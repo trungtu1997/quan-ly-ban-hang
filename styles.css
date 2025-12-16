@@ -46,7 +46,7 @@ body {
 /* --- Phần Header (Đăng nhập & Giới thiệu) --- */
 .header-section {
     text-align: center;
-    margin-bottom: 3rem; /* mb-12 */
+    margin-bottom: 4rem; /* mb-12 */
 }
 
 .heading-1 {
@@ -249,4 +249,5 @@ body {
     width: 1.5rem; /* w-6 */
 
 }
+
 
